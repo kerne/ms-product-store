@@ -14,7 +14,8 @@ import java.util.Optional;
 @Repository
 public interface IProductRepo extends JpaRepository<ProductEntity, Integer> {
 
-    @Query(value = "select u from ProductEntity u where u.sku=?1")
-    Optional<Product> findProduct(Integer sku);
+    @Query(value = "select u, e from ProductEntity u inner join ImageEntity  e " +
+            "ON u.id=e.id where u.sku=?1")
+    Optional<ProductEntity> findProduct(Integer sku);
 
 }
