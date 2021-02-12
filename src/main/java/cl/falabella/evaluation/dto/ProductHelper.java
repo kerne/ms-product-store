@@ -21,9 +21,8 @@ public class ProductHelper {
 
         List<ImageEntity> images = new ArrayList<>();
 
-        Optional optURl = Optional.of(opProduct.get().getOtherUrls());
 
-        if (optURl.isPresent()) {
+        if (opProduct.isPresent() && opProduct.get().getOtherUrls() != null) {
             images = opProduct.get().getOtherUrls().stream().map(e -> {
                 return ImageEntity.builder().name(e.getName()).build();
 
