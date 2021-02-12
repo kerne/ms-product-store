@@ -30,12 +30,9 @@ public class ProductServiceTest {
 
     @Test
     public void testAdd() throws Exception {
-
         Mockito.when(repository.save(Mockito.any())).thenReturn(ProductUtil.getProductEntity().get());
         Mockito.when(repository.findProduct(Mockito.anyInt())).thenReturn(ProductUtil.getProductEntity().get());
-
         ProductEntity entity = (ProductEntity) service.add(ProductUtil.getProduct());
-
         Assert.assertEquals(Integer.valueOf(1), entity.getId());
 
     }
@@ -43,12 +40,8 @@ public class ProductServiceTest {
 
     @Test(expected = Exception.class)
     public void testGet() {
-
         Mockito.when(repository.findProduct(Mockito.anyInt())).thenReturn(ProductUtil.getProductEntity().get());
-
         ProductEntity entity = (ProductEntity) service.get(123123);
-
-
     }
 
 
