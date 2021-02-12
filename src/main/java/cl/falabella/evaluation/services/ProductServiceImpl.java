@@ -9,6 +9,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 @Slf4j
 public class ProductServiceImpl implements IProductService {
@@ -18,6 +20,15 @@ public class ProductServiceImpl implements IProductService {
 
     @Override
     public Object add(Product product) {
+        Optional<Product> prd = Optional.of(product);
+
+        if (!prd.isPresent()) {
+            return null;
+        }
+
+
+        log.info("Product {}", product);
+
         ProductEntity entity = ProductHelper.toEntity(product);
         return repo.save(entity);
     }

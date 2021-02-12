@@ -15,18 +15,19 @@ import java.util.stream.Collectors;
 public class ProductHelper {
 
 
-    public static  ProductEntity toEntity(Product product) {
+    public static ProductEntity toEntity(Product product) {
 
         Optional<Product> opProduct = Optional.of(product);
 
         List<ImageEntity> images = new ArrayList<>();
 
-        if (opProduct.isPresent() && !opProduct.get().getOtherUrls().isEmpty()) {
+        Optional optURl = Optional.of(opProduct.get().getOtherUrls());
 
+        if (optURl.isPresent()) {
             images = opProduct.get().getOtherUrls().stream().map(e -> {
                 return ImageEntity.builder().name(e.getName()).build();
-            }).collect(Collectors.toList());
 
+            }).collect(Collectors.toList());
         }
 
         return ProductEntity.builder()
