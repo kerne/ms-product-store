@@ -16,6 +16,6 @@ public interface IProductRepo extends JpaRepository<ProductEntity, Integer> {
 
     @Query(value = "select u, e from ProductEntity u inner join ImageEntity  e " +
             "ON u.id=e.id where u.sku=?1")
-    Optional<ProductEntity> findProduct(Integer sku);
+    ProductEntity findProduct(Integer sku);
 
 }

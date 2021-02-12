@@ -28,10 +28,11 @@ public class ProductServiceTest {
     @Autowired
     IProductService service;
 
-    @Test
+    @Test(expected = Exception.class)
     public void testAdd() throws Exception {
 
         Mockito.when(repository.save(Mockito.any())).thenReturn(ProductUtil.getProductEntity().get());
+        Mockito.when(repository.findProduct(Mockito.anyInt())).thenReturn(ProductUtil.getProductEntity().get());
 
         ProductEntity entity = (ProductEntity) service.add(ProductUtil.getProduct());
 
@@ -43,7 +44,7 @@ public class ProductServiceTest {
     @Test
     public void testGet() {
 
-        Mockito.when(repository.findById(Mockito.any())).thenReturn(ProductUtil.getProductEntity());
+        Mockito.when(repository.findProduct(Mockito.anyInt())).thenReturn(ProductUtil.getProductEntity().get());
 
         ProductEntity entity = (ProductEntity) service.get(123123);
 

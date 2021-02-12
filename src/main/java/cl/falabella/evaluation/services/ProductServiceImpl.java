@@ -27,7 +27,7 @@ public class ProductServiceImpl implements IProductService {
         if (!prd.isPresent()) {
             throw new ProductException(HttpStatus.NO_CONTENT, "Producto Vacio");
         }
-        Optional<ProductEntity> productEntity = repo.findProduct(product.getSku());
+        Optional<ProductEntity> productEntity = Optional.ofNullable(repo.findProduct(product.getSku()));
         if (productEntity.isPresent()) {
             throw new ProductException(HttpStatus.CONFLICT,"Producto Existente");
         }
@@ -40,7 +40,7 @@ public class ProductServiceImpl implements IProductService {
 
     @Override
     public Object get(Integer sku) {
-        Optional<ProductEntity> optEntity = repo.findProduct(sku);
+        Optional<ProductEntity> optEntity = Optional.ofNullable(repo.findProduct(sku));
         if (!optEntity.isPresent()) {
             throw new ProductException(HttpStatus.NO_CONTENT, "Producto No existe");
         }
