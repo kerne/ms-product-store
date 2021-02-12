@@ -1,13 +1,17 @@
 package cl.falabella.evaluation;
 
 import cl.falabella.evaluation.model.ProductUtil;
-import org.junit.jupiter.api.Test;
+import cl.falabella.evaluation.services.IProductService;
+import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.util.MimeTypeUtils;
@@ -18,7 +22,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @ActiveProfiles("test")
-@RunWith(SpringRunner.class)
+@RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc
 public class MsProductStoreApplicationTests {
@@ -27,11 +31,16 @@ public class MsProductStoreApplicationTests {
     WebApplicationContext webApplicationContext;
 
 
+    @Mock
+    IProductService service;
+
+
     @Autowired
     MockMvc mockMvc;
 
     @Test
     public void testAdd() throws Exception {
+        Mockito.when(service.add(Mockito.any())).thenReturn(ProductUtil.getProductJson());
         mockMvc
                 .perform(
                         post("/api/v1/product/")
@@ -45,8 +54,10 @@ public class MsProductStoreApplicationTests {
 
     }
 
+
     @Test
     public void testGetById() throws Exception {
+        Mockito.when(service.get(Mockito.any())).thenReturn(ProductUtil.getProductJson());
 
         mockMvc
                 .perform(

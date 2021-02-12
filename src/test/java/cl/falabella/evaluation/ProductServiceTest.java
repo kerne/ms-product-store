@@ -5,13 +5,15 @@ import cl.falabella.evaluation.model.ProductUtil;
 import cl.falabella.evaluation.respository.IProductRepo;
 import cl.falabella.evaluation.services.IProductService;
 import org.junit.Assert;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.junit4.SpringRunner;
 
 @ActiveProfiles("test")
@@ -23,7 +25,7 @@ public class ProductServiceTest {
     @Mock
     IProductRepo repository;
 
-    @InjectMocks
+    @Autowired
     IProductService service;
 
     @Test
@@ -43,7 +45,7 @@ public class ProductServiceTest {
 
         Mockito.when(repository.findById(Mockito.any())).thenReturn(ProductUtil.getProductEntity());
 
-        ProductEntity entity = (ProductEntity) service.get(1);
+        ProductEntity entity = (ProductEntity) service.get(123123);
 
         Assert.assertNotNull(entity);
 
