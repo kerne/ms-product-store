@@ -30,12 +30,11 @@ class MsProductStoreApplicationTests {
     @Autowired
     MockMvc mockMvc;
 
-
     @Test
     public void testAdd() throws Exception {
         mockMvc
                 .perform(
-                        post("/api/v1/")
+                        post("/api/v1/product/")
                                 .accept(MediaType.APPLICATION_JSON_UTF8)
                                 .contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)
                                 .content(ProductUtil.getProductJson())
@@ -51,7 +50,7 @@ class MsProductStoreApplicationTests {
 
         mockMvc
                 .perform(
-                        get("/api/v1/{id}", 1)
+                        get("/api/v1/product/{id}", 1)
                                 .accept(MimeTypeUtils.APPLICATION_JSON_VALUE))
                 .andExpect(status().isOk());
 
