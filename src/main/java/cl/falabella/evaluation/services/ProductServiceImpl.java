@@ -3,10 +3,12 @@ package cl.falabella.evaluation.services;
 
 import cl.falabella.evaluation.dto.ProductHelper;
 import cl.falabella.evaluation.entity.ProductEntity;
+import cl.falabella.evaluation.exception.ProductException;
 import cl.falabella.evaluation.model.Product;
 import cl.falabella.evaluation.respository.IProductRepo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -23,9 +25,12 @@ public class ProductServiceImpl implements IProductService {
         Optional<Product> prd = Optional.of(product);
 
         if (!prd.isPresent()) {
-            return null;
+            throw new ProductException(HttpStatus.NO_CONTENT, "Producto Vacio");
         }
-
+        Optional<ProductEntity> productEntity = repo.findProduct(product.getSku());
+        if (productEntity.isPresent()) {
+            throw new ProductException(HttpStatus.CONFLICT,"Producto Existente");
+        }
 
         log.info("Product {}", product);
 
@@ -35,6 +40,10 @@ public class ProductServiceImpl implements IProductService {
 
     @Override
     public Object get(Integer sku) {
-        return repo.findProduct(sku);
+        Optional<ProductEntity> optEntity = repo.findProduct(sku);
+        if (!optEntity.isPresent()) {
+            throw new ProductException(HttpStatus.NO_CONTENT, "Producto No existe");
+        }
+        return optEntity.get();
     }
 }

@@ -21,7 +21,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc
-class MsProductStoreApplicationTests {
+public class MsProductStoreApplicationTests {
 
     @Autowired
     WebApplicationContext webApplicationContext;
