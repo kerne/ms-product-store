@@ -2,14 +2,16 @@
 
 PRUEBA TECNICA - API REST
 
-##REPOSITORIO GITHUB
+## REPOSITORIO GITHUB
 
+```sh
 git clone https://github.com/kerne/ms-product-store.git
-
-##ENDPOINTS
+```
+## ENDPOINTS
 /api/v1/product
 
-POST -> Body 
+POST
+```sh
 {
 "sku": 8406270,
 "name" : "500 Zapatilla Urbana Mujer",
@@ -21,7 +23,8 @@ POST -> Body
         {"name" : "https://falabella.scene7.com/is/image/Falabella/8406270_1"}
 ]
 }
-
+```
 ## CORRER APLICACIÓN
-
+```sh
 gradle bootRun
+```
