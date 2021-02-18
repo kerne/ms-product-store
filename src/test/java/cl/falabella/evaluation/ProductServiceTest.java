@@ -34,7 +34,7 @@ public class ProductServiceTest {
         Mockito.when(repository.save(Mockito.any())).thenReturn(ProductUtil.getProductEntity().get());
         Mockito.when(repository.findProduct(Mockito.anyInt())).thenReturn(ProductUtil.getProductEntity().get());
         Product entity = (Product) service.add(ProductUtil.getProduct());
-        Assert.assertEquals(Integer.valueOf(1), entity.getSku());
+        Assert.assertEquals(Integer.valueOf(1000000), entity.getSku());
 
     }
 

@@ -12,7 +12,7 @@ public class ProductUtil {
      * @return
      */
     public static Product getProduct() {
-        return Product.builder().sku(123123).brand("NEW BALANCE").size("37").price(49999d).name("500 Zapatilla Urbana Mujer").principalUrl("•\thttps://falabella.scene7.com/is/image/Falabella/8406270_1").build();
+        return Product.builder().sku(1000000).brand("NEW BALANCE").size("37").price(49999d).name("500 Zapatilla Urbana Mujer").principalUrl("https://falabella.scene7.com/is/image/Falabella/8406270_1").build();
     }
 
     /**
@@ -36,7 +36,7 @@ public class ProductUtil {
                 .size("37")
                 .price(49999d)
                 .name("500 Zapatilla Urbana Mujer")
-                .principalUrl("•\thttps://falabella.scene7.com/is/image/Falabella/8406270_1")
+                .principalUrl("thttps://falabella.scene7.com/is/image/Falabella/8406270_1")
                 .build())
                 ;
     }

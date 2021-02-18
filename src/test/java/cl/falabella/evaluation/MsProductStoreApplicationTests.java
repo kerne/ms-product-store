@@ -50,7 +50,7 @@ public class MsProductStoreApplicationTests {
 
                 )
 
-                .andExpect(status().isOk());
+                .andExpect(status().is2xxSuccessful());
 
     }
 
@@ -63,7 +63,7 @@ public class MsProductStoreApplicationTests {
                 .perform(
                         get("/api/v1/product/{id}", 1)
                                 .accept(MimeTypeUtils.APPLICATION_JSON_VALUE))
-                .andExpect(status().isOk());
+                .andExpect(status().is2xxSuccessful());
 
     }
 
