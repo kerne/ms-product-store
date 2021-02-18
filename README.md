@@ -7,6 +7,11 @@ PRUEBA TECNICA - API REST
 ```sh
 git clone https://github.com/kerne/ms-product-store.git
 ```
+## HEROKU DOMAIN
+```sh
+https://ms-product-store.herokuapp.com/ms-product-store/
+```
+
 ## ENDPOINTS
 /api/v1/product
 
