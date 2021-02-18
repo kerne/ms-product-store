@@ -14,8 +14,8 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 public class Advice extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(ProductException.class)
-    public Error handleException(ProductException mex) {
-        return new Error(mex.getStatus(), mex.getMessage());
+    public ResponseEntity<Object> handleException(ProductException mex) {
+        return ResponseEntity.status(mex.getStatus()).body(new Error(mex.getStatus(), mex.getMessage()));
     }
 
     @Override

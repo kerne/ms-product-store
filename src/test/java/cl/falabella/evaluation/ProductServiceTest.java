@@ -1,6 +1,7 @@
 package cl.falabella.evaluation;
 
 import cl.falabella.evaluation.entity.ProductEntity;
+import cl.falabella.evaluation.model.Product;
 import cl.falabella.evaluation.model.ProductUtil;
 import cl.falabella.evaluation.respository.IProductRepo;
 import cl.falabella.evaluation.services.IProductService;
@@ -32,8 +33,8 @@ public class ProductServiceTest {
     public void testAdd() throws Exception {
         Mockito.when(repository.save(Mockito.any())).thenReturn(ProductUtil.getProductEntity().get());
         Mockito.when(repository.findProduct(Mockito.anyInt())).thenReturn(ProductUtil.getProductEntity().get());
-        ProductEntity entity = (ProductEntity) service.add(ProductUtil.getProduct());
-        Assert.assertEquals(Integer.valueOf(1), entity.getId());
+        Product entity = (Product) service.add(ProductUtil.getProduct());
+        Assert.assertEquals(Integer.valueOf(1), entity.getSku());
 
     }
 
@@ -41,7 +42,7 @@ public class ProductServiceTest {
     @Test(expected = Exception.class)
     public void testGet() {
         Mockito.when(repository.findProduct(Mockito.anyInt())).thenReturn(ProductUtil.getProductEntity().get());
-        ProductEntity entity = (ProductEntity) service.get(123123);
+        Product entity = (Product) service.get(123123);
     }
 
 

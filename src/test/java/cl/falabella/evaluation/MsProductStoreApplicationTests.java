@@ -40,7 +40,7 @@ public class MsProductStoreApplicationTests {
 
     @Test
     public void testAdd() throws Exception {
-        Mockito.when(service.add(Mockito.any())).thenReturn(ProductUtil.getProductJson());
+        Mockito.when(service.add(Mockito.any())).thenReturn(ProductUtil.getProduct());
         mockMvc
                 .perform(
                         post("/api/v1/product/")
@@ -57,7 +57,7 @@ public class MsProductStoreApplicationTests {
 
     @Test
     public void testGetById() throws Exception {
-        Mockito.when(service.get(Mockito.any())).thenReturn(ProductUtil.getProductJson());
+        Mockito.when(service.get(Mockito.any())).thenReturn(ProductUtil.getProduct());
 
         mockMvc
                 .perform(

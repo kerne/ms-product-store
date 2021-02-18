@@ -6,11 +6,18 @@ import lombok.NoArgsConstructor;
 import org.springframework.http.HttpStatus;
 
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class Error {
 
     private HttpStatus errorCode;
     private String message;
+    private Integer code;
+
+    public Error(HttpStatus errorCode, String message) {
+        super();
+        this.errorCode = errorCode;
+        this.message = message;
+        this.code = errorCode.value();
+    }
+
 
 }

@@ -25,8 +25,8 @@ public class Product {
     @NotBlank
     private String size;
 
-    @Max(value = 1)
-    @Min(value = 99999999)
+    @Max(value = 99999999)
+    @Min(value = 1 )
     private Double price;
 
     @Pattern(regexp = "^(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]")

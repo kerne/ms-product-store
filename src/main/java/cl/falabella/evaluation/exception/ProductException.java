@@ -8,6 +8,7 @@ public class ProductException extends RuntimeException {
      */
     private HttpStatus status;
     private String message;
+    private Integer code;
 
     public ProductException() {
     }
@@ -16,6 +17,7 @@ public class ProductException extends RuntimeException {
         super();
         this.status = status;
         this.message = message;
+        this.code = status.value();
     }
 
     public ProductException(String message) {
@@ -26,15 +28,8 @@ public class ProductException extends RuntimeException {
         return status;
     }
 
-    public void setStatus(HttpStatus status) {
-        this.status = status;
-    }
-
+    @Override
     public String getMessage() {
         return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
     }
 }

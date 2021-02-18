@@ -21,7 +21,7 @@ public class ProductServiceImpl implements IProductService {
     IProductRepo repo;
 
     @Override
-    public Object add(Product product) {
+    public Product add(Product product) {
         Optional<Product> prd = Optional.of(product);
 
         if (!prd.isPresent()) {
@@ -35,15 +35,15 @@ public class ProductServiceImpl implements IProductService {
         log.info("Product {}", product);
 
         ProductEntity entity = ProductHelper.toEntity(product);
-        return repo.save(entity);
+        return ProductHelper.toProduct(repo.save(entity));
     }
 
     @Override
-    public Object get(Integer sku) {
+    public Product get(Integer sku) {
         Optional<ProductEntity> optEntity = Optional.ofNullable(repo.findProduct(sku));
         if (!optEntity.isPresent()) {
             throw new ProductException(HttpStatus.NO_CONTENT, "Producto No existe");
         }
-        return optEntity.get();
+        return ProductHelper.toProduct(optEntity.get());
     }
 }
